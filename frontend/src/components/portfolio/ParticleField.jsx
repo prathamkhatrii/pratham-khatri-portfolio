@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 // Deep-black canvas backdrop: faint drifting vertical light streaks + slow particle dust.
 export const ParticleField = () => {
   const canvasRef = useRef(null);
+  const gridRef = useRef(null);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -10,10 +11,15 @@ export const ParticleField = () => {
     const ctx = canvas.getContext("2d");
     let raf;
     let w, h, dpr;
+    let scrollY = window.scrollY;
+    const onScroll = () => {
+      scrollY = window.scrollY;
+    };
 
     const streaks = [];
     const dust = [];
     const planets = [];
+    const stars = [];
 
     const build = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -48,7 +54,21 @@ export const ParticleField = () => {
           cyan: Math.random() > 0.85,
         });
       }
-      // subtle drifting planets + galaxies
+      // starfield with parallax depth (scrolls with the page)
+      stars.length = 0;
+      const scount = Math.max(80, Math.floor((w * h) / 9000));
+      for (let i = 0; i < scount; i++) {
+        stars.push({
+          x: Math.random() * w,
+          y: Math.random() * (h * 2.2),
+          r: Math.random() * 1.1 + 0.25,
+          par: 0.12 + Math.random() * 0.5,
+          base: 0.15 + Math.random() * 0.5,
+          tw: Math.random() * Math.PI * 2,
+          twV: 0.01 + Math.random() * 0.03,
+          cyan: Math.random() > 0.9,
+        });
+      }
       planets.length = 0;
       const palette = [
         ["0,240,255", "planet"],
@@ -78,7 +98,28 @@ export const ParticleField = () => {
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
 
-      // galaxies & planets (drawn first, behind streaks/dust)
+      if (gridRef.current) {
+        gridRef.current.style.backgroundPosition = `0px ${-scrollY * 0.35}px`;
+      }
+
+      // starfield (behind everything) with scroll parallax
+      const spanY = h * 2.2;
+      stars.forEach((s) => {
+        s.tw += s.twV;
+        let sy = (s.y - scrollY * s.par) % spanY;
+        if (sy < 0) sy += spanY;
+        if (sy > h + 2) return;
+        const op = s.base * (0.55 + 0.45 * Math.sin(s.tw));
+        ctx.beginPath();
+        ctx.arc(s.x, sy, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = s.cyan
+          ? `rgba(120,240,255,${op})`
+          : `rgba(230,236,245,${op})`;
+        ctx.fill();
+      });
+
+      // galaxies & planets (parallax drift with scroll)
+      const pShift = scrollY * 0.18;
       planets.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
@@ -88,9 +129,12 @@ export const ParticleField = () => {
         if (p.y < -p.r) p.y = h + p.r;
         if (p.y > h + p.r) p.y = -p.r;
 
+        let py = ((p.y - pShift) % (h + p.r * 2 + 40));
+        if (py < -p.r - 40) py += h + p.r * 2 + 40;
+
         if (p.type === "galaxy") {
           ctx.save();
-          ctx.translate(p.x, p.y);
+          ctx.translate(p.x, py);
           ctx.rotate(p.spin);
           for (let a = 0; a < 3; a++) {
             ctx.rotate((Math.PI * 2) / 3);
@@ -106,10 +150,10 @@ export const ParticleField = () => {
         } else {
           const g = ctx.createRadialGradient(
             p.x - p.r * 0.3,
-            p.y - p.r * 0.3,
+            py - p.r * 0.3,
             p.r * 0.1,
             p.x,
-            p.y,
+            py,
             p.r
           );
           g.addColorStop(0, `rgba(${p.color},${p.op * 2.2})`);
@@ -117,14 +161,13 @@ export const ParticleField = () => {
           g.addColorStop(1, `rgba(${p.color},0)`);
           ctx.fillStyle = g;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.arc(p.x, py, p.r, 0, Math.PI * 2);
           ctx.fill();
-          // faint ring on larger planets
           if (p.r > 55) {
             ctx.strokeStyle = `rgba(${p.color},${p.op * 1.4})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.ellipse(p.x, p.y, p.r * 1.35, p.r * 0.42, p.spin, 0, Math.PI * 2);
+            ctx.ellipse(p.x, py, p.r * 1.35, p.r * 0.42, p.spin, 0, Math.PI * 2);
             ctx.stroke();
           }
         }
@@ -167,9 +210,11 @@ export const ParticleField = () => {
       draw();
     }
     window.addEventListener("resize", build);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", build);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
@@ -179,7 +224,7 @@ export const ParticleField = () => {
       aria-hidden="true"
       data-testid="particle-field"
     >
-      <div className="absolute inset-0 grid-bg opacity-40" />
+      <div ref={gridRef} className="absolute inset-0 grid-bg opacity-40" />
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
       <div
         className="absolute inset-0"

@@ -112,5 +112,5 @@ export const skills = [
 export const stats = [
   { value: "30%", label: "manual reporting effort cut" },
   { value: "11.5K+", label: "transactions modelled" },
-  { value: "4+", label: "AI architectures evaluated" },
+  { value: "10+", label: "AI architectures evaluated" },
 ];
