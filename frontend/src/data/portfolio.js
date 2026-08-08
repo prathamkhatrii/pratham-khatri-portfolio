@@ -114,3 +114,53 @@ export const stats = [
   { value: "11.5K+", label: "transactions modelled" },
   { value: "10+", label: "AI architectures evaluated" },
 ];
+
+export const blogs = [
+  {
+    n: "01",
+    category: "Data Engineering",
+    title:
+      "From Messy CSV to Business Insight: How I Cleaned and Analyzed E-Commerce Data",
+    excerpt:
+      "A walkthrough of my SQL e-commerce project focused on the cleaning decisions, not the syntax.",
+    body: "Why I merged duplicate customers on normalized email instead of dropping them, why I filled missing cost data with a category-average ratio instead of the column mean, and what broke when orphaned foreign keys went unhandled. The post that proves you understand why you're cleaning data — not just how — which is what separates junior from senior thinking.",
+    read: "8 min read",
+  },
+  {
+    n: "02",
+    category: "Opinion",
+    title: "Why I Built My Portfolio Dashboard Without Tableau",
+    excerpt:
+      "A short, opinionated piece on why a self-hosted HTML/JS dashboard can beat a Tableau Public link.",
+    body: "No viewer license needed, it shows real JS + data skills, and it's fully mine to customize. I walk through the auto-generated insight panel as the differentiator — the part that turns a chart wall into something that actually reads the data for you.",
+    read: "5 min read",
+  },
+  {
+    n: "03",
+    category: "Machine Learning",
+    title:
+      "Churn Prediction Isn't Enough: Why I Added Uplift Modeling to My Retention Analysis",
+    excerpt:
+      "The risk-vs-persuadability distinction in plain English, then the policy simulation.",
+    body: "Persuadables, Sure Things, Lost Causes and Sleeping Dogs — the framing that makes uplift click for non-technical readers. Then the numbers: if you target by risk you get $X back, if you target by uplift you get $Y back. The post most likely to get forwarded internally at a company you're applying to.",
+    read: "10 min read",
+  },
+  {
+    n: "04",
+    category: "SQL Reference",
+    title: "5 SQL Patterns I Use in Almost Every Analysis",
+    excerpt:
+      "An evergreen reference: the queries I reach for on nearly every dataset.",
+    body: "Window functions for cohort analysis, conditional aggregation with CASE WHEN inside SUM, the classic RFM segmentation query, and more. Less about my projects, more a genuinely useful reference other analysts search for and share.",
+    read: "7 min read",
+  },
+];
+
+export const interests = [
+  "Causal Inference & Uplift Modelling",
+  "LLMs & Retrieval-Augmented Generation",
+  "Data Storytelling",
+  "Dashboard & BI Design",
+  "Open-Source Analytics",
+  "Chess & Strategy Games",
+];

@@ -9,6 +9,7 @@ import { Experience } from "@/components/portfolio/Experience";
 import { Projects } from "@/components/portfolio/Projects";
 import { Marquee } from "@/components/portfolio/Marquee";
 import { Skills } from "@/components/portfolio/Skills";
+import { BlogInterests } from "@/components/portfolio/BlogInterests";
 import { Contact } from "@/components/portfolio/Contact";
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Projects />
         <Marquee />
         <Skills />
+        <BlogInterests />
         <Contact />
       </main>
     </div>
