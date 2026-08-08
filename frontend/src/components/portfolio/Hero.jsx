@@ -35,7 +35,7 @@ export const Hero = () => {
           Hi, I'm <span className="text-cyan glow-cyan">Pratham Khatri</span>
         </motion.div>
 
-        <h1 className="font-display text-[13vw] font-black uppercase leading-[0.92] tracking-tighter text-white md:text-[8.5vw]">
+        <h1 className="font-display text-4xl font-black uppercase leading-[0.95] tracking-tighter text-white sm:text-5xl md:text-7xl">
           {heroLines.map((line, i) => (
             <span key={i} className="block overflow-hidden">
               <motion.span
