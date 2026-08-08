@@ -26,20 +26,6 @@ export const Hero = () => {
     >
       <motion.div style={{ y, opacity }} className="mx-auto w-full max-w-[1400px]">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-8 flex items-center gap-4 font-mono text-xs uppercase tracking-[0.25em] text-cyan"
-          data-testid="hero-eyebrow"
-        >
-          <span className="h-px w-10 bg-cyan" />
-          {profile.role}
-          <span className="flex items-center gap-1 text-[var(--txt-muted)]">
-            <MapPin size={12} /> {profile.location}
-          </span>
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35 }}
@@ -65,6 +51,20 @@ export const Hero = () => {
             </span>
           ))}
         </h1>
+
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="mt-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-cyan"
+          data-testid="hero-eyebrow"
+        >
+          <span className="h-px w-8 bg-cyan" />
+          {profile.role}
+          <span className="flex items-center gap-1 text-[var(--txt-muted)]">
+            <MapPin size={11} /> {profile.location}
+          </span>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
