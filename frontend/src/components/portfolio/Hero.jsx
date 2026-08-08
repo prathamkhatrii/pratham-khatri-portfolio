@@ -39,6 +39,16 @@ export const Hero = () => {
           </span>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="mb-3 font-mono text-sm uppercase tracking-[0.3em] text-white md:text-base"
+          data-testid="hero-greeting"
+        >
+          Hi, I'm <span className="text-cyan glow-cyan">Pratham Khatri</span>
+        </motion.div>
+
         <h1 className="font-display text-[13vw] font-black uppercase leading-[0.92] tracking-tighter text-white md:text-[8.5vw]">
           {heroLines.map((line, i) => (
             <span key={i} className="block overflow-hidden">

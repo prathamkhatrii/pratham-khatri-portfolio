@@ -5,8 +5,8 @@ import { profile } from "../../data/portfolio";
 const channels = [
   { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}`, testid: "contact-email" },
   { icon: Phone, label: "Phone", value: profile.phone, href: `tel:${profile.phone}`, testid: "contact-phone" },
-  { icon: Linkedin, label: "LinkedIn", value: "/prathamkhatri", href: profile.linkedin, testid: "contact-linkedin" },
-  { icon: Github, label: "GitHub", value: "/prathamkhatri", href: profile.github, testid: "contact-github" },
+  { icon: Linkedin, label: "LinkedIn", value: "/prathammkhatrii", href: profile.linkedin, testid: "contact-linkedin" },
+  { icon: Github, label: "GitHub", value: "/prathamkhatrii", href: profile.github, testid: "contact-github" },
 ];
 
 export const Contact = () => {

@@ -6,8 +6,8 @@ export const profile = {
   location: "Toronto, ON",
   email: "prathamkhatri0026@gmail.com",
   phone: "437-986-0464",
-  linkedin: "https://linkedin.com/in/prathamkhatri",
-  github: "https://github.com/prathamkhatri",
+  linkedin: "https://www.linkedin.com/in/prathammkhatrii/",
+  github: "https://github.com/prathamkhatrii",
   tagline:
     "Computer Science @ York University. I turn messy, ambiguous data into decisions that move revenue.",
 };
@@ -83,7 +83,7 @@ export const projects = [
       "Applied causal / uplift modelling (X-Learner, Qini) to isolate persuadable customers — a distinction plain churn prediction misses entirely.",
       "Caught & fixed a data-leakage issue inflating AUC, reframing the target for real-world validity.",
     ],
-    link: profile => profile.github,
+    link: "https://github.com/prathamkhatrii/customer-churn-risk-uplift-modeling",
   },
   {
     id: "margin",
@@ -96,6 +96,7 @@ export const projects = [
       "Built 20+ DAX measures isolating True Net Profit from Gross Revenue — quantifying $300K+ in leakage from discounting, freight and returns.",
       "Designed a dynamic What-If simulator projecting $94K recovery from a 10% discount cap with zero volume loss.",
     ],
+    link: "https://github.com/prathamkhatrii/Customer-profitability-and-margin-leakage",
   },
 ];
 
