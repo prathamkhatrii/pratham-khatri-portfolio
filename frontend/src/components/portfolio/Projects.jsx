@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { projects, profile } from "../../data/portfolio";
 
 export const Projects = () => {
@@ -87,6 +87,26 @@ export const Projects = () => {
           );
         })}
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-12 flex items-center gap-4 font-mono text-sm text-[var(--txt-secondary)]"
+        data-testid="projects-more"
+      >
+        <span>For more projects, check out my</span>
+        <button
+          onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+          className="group inline-flex items-center gap-2 border border-white/10 px-4 py-2 uppercase tracking-widest text-cyan transition-all duration-300 hover:glow-border hover:bg-cyan/5"
+          data-testid="projects-github-link"
+          aria-label="Go to contact section"
+        >
+          <Github size={18} className="transition-transform duration-300 group-hover:scale-110" />
+          GitHub
+        </button>
+      </motion.div>
     </section>
   );
 };
