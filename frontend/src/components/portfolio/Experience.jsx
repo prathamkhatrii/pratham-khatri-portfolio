@@ -24,7 +24,7 @@ export const Experience = () => {
           </h2>
         </div>
         <p className="max-w-xs font-mono text-xs uppercase tracking-widest text-[var(--txt-muted)]">
-          Three roles. One throughline — shipping data that pays for itself.
+          Three roles. One throughline. Shipping data that pays for itself.
         </p>
       </motion.div>
 

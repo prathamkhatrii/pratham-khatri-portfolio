@@ -13,6 +13,7 @@ export const ParticleField = () => {
 
     const streaks = [];
     const dust = [];
+    const planets = [];
 
     const build = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -47,10 +48,87 @@ export const ParticleField = () => {
           cyan: Math.random() > 0.85,
         });
       }
+      // subtle drifting planets + galaxies
+      planets.length = 0;
+      const palette = [
+        ["0,240,255", "planet"],
+        ["0,80,255", "planet"],
+        ["120,90,255", "galaxy"],
+        ["255,0,85", "planet"],
+        ["0,180,220", "galaxy"],
+      ];
+      const pcount = Math.max(4, Math.floor(w / 520));
+      for (let i = 0; i < pcount; i++) {
+        const p = palette[i % palette.length];
+        planets.push({
+          x: Math.random() * w,
+          y: Math.random() * h * 0.85,
+          r: (p[1] === "galaxy" ? 90 : 34) + Math.random() * 60,
+          color: p[0],
+          type: p[1],
+          vx: (Math.random() - 0.5) * 0.08,
+          vy: (Math.random() - 0.5) * 0.05,
+          op: 0.05 + Math.random() * 0.06,
+          spin: Math.random() * Math.PI,
+          spinV: (Math.random() - 0.5) * 0.0015,
+        });
+      }
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
+
+      // galaxies & planets (drawn first, behind streaks/dust)
+      planets.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.spin += p.spinV;
+        if (p.x < -p.r) p.x = w + p.r;
+        if (p.x > w + p.r) p.x = -p.r;
+        if (p.y < -p.r) p.y = h + p.r;
+        if (p.y > h + p.r) p.y = -p.r;
+
+        if (p.type === "galaxy") {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.spin);
+          for (let a = 0; a < 3; a++) {
+            ctx.rotate((Math.PI * 2) / 3);
+            const g = ctx.createRadialGradient(0, 0, p.r * 0.1, 0, 0, p.r);
+            g.addColorStop(0, `rgba(${p.color},${p.op})`);
+            g.addColorStop(1, `rgba(${p.color},0)`);
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.ellipse(p.r * 0.35, 0, p.r, p.r * 0.4, 0, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+        } else {
+          const g = ctx.createRadialGradient(
+            p.x - p.r * 0.3,
+            p.y - p.r * 0.3,
+            p.r * 0.1,
+            p.x,
+            p.y,
+            p.r
+          );
+          g.addColorStop(0, `rgba(${p.color},${p.op * 2.2})`);
+          g.addColorStop(0.6, `rgba(${p.color},${p.op})`);
+          g.addColorStop(1, `rgba(${p.color},0)`);
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+          // faint ring on larger planets
+          if (p.r > 55) {
+            ctx.strokeStyle = `rgba(${p.color},${p.op * 1.4})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.ellipse(p.x, p.y, p.r * 1.35, p.r * 0.42, p.spin, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+        }
+      });
 
       streaks.forEach((s) => {
         s.y += s.speed;

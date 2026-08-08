@@ -26,7 +26,7 @@ export const About = () => {
             <span className="stroke-text-cyan">think.</span>
           </h2>
           <p className="mt-8 font-mono text-sm leading-relaxed text-[var(--txt-secondary)]">
-            A Computer Science graduate from York University (Class of 2026) — happiest at the seam
+            A Computer Science graduate from York University (Class of 2026), happiest at the seam
             where data engineering, ML and business strategy collide.
           </p>
         </motion.div>

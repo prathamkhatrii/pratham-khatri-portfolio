@@ -69,7 +69,7 @@ export const Contact = () => {
 
         <div className="mt-24 flex flex-col items-start justify-between gap-4 border-t border-white/8 pt-8 font-mono text-xs uppercase tracking-widest text-[var(--txt-muted)] md:flex-row md:items-center">
           <span>© 2026 {profile.name}</span>
-          <span>Toronto, ON — Designed & built from scratch</span>
+          <span>Toronto, ON. Designed & built from scratch</span>
         </div>
       </div>
     </section>
