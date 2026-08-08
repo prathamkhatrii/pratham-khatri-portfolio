@@ -1,0 +1,119 @@
+{
+  "theme": "Dark Theme Only",
+  "archetype": "ELECTRIC & NEON (ARCHETYPE 7) + SWISS & HIGH-CONTRAST (ARCHETYPE 4)",
+  "global_rules": [
+    "No generic Inter or Space Grotesk. Typography must be distinct and narrative-driven.",
+    "Bold cohesive art direction: Deep black canvas, neon cyan/blue accents, grid/particle tech backgrounds.",
+    "No personal photo. Use abstract data, code, or neon geometry as deliberate product photography.",
+    "DO NOT use complete transparent background in header, overlays, any surface that has content under it.",
+    "All interactive and key informational elements MUST include a `data-testid` attribute."
+  ],
+  "typography": {
+    "headings": {
+      "family": "Unbounded, sans-serif",
+      "weights": ["400", "700", "900"],
+      "description": "Used for hero, section titles, and large numbers. Bold, wide, futuristic, and tech-driven."
+    },
+    "body": {
+      "family": "JetBrains Mono, monospace",
+      "weights": ["400", "500"],
+      "description": "Used for all body text, stats, labels, and code-like elements to emphasize the CS/Data/AI professional background."
+    },
+    "rules": [
+      "Headlines (size > 32px) MUST use tracking-tighter.",
+      "Overlines / Labels MUST be Uppercase + Tiny + Wide Spacing (tracking-[0.2em]).",
+      "The jump between a heading and its subheading must not exceed 2 Tailwind steps."
+    ]
+  },
+  "colors": {
+    "background": {
+      "base": "#050505",
+      "surface_1": "#0A0A0A",
+      "surface_2": "#111216"
+    },
+    "text": {
+      "primary": "#F2F4F7",
+      "secondary": "#8A93A6",
+      "muted": "#4B5263"
+    },
+    "brand": {
+      "primary": "#00F0FF",
+      "secondary": "#0033FF",
+      "accent": "#FF0055"
+    },
+    "rules": [
+      "Use #00F0FF (Neon Cyan) strictly for highlights, glowing borders, CTAs, and key data points (metrics).",
+      "Never use pure #000000 without noise/texture. The background should be #050505.",
+      "Apply text-shadows on Cyan text over dark backgrounds to emulate a neon glow (e.g., drop-shadow-[0_0_8px_rgba(0,240,255,0.6)])."
+    ]
+  },
+  "layout_and_spacing": {
+    "philosophy": "Asymmetry, Visual Tension, and High-Density grids where data lives.",
+    "spacing_scale": "p-4, p-8, p-12, p-24, p-32",
+    "grids": "Use 'Bento' Grid for Skills and Projects. Base Grid: grid-cols-1 md:grid-cols-12. Generous gaps (gap-8 to gap-12).",
+    "rules": [
+      "Containers with borders must have internal padding (p-8).",
+      "Never center-align paragraphs. Use diagonals, structured left-alignment, and negative space to guide the eye."
+    ]
+  },
+  "components": {
+    "hero": "Kinetic Hero. Left-aligned massive 'Unbounded' typography. On-load masked line-by-line reveal using Framer Motion. Subtle background grid or 3D particles.",
+    "about": "Numbered manifesto chapters. Use a stark, editorial layout. Large numbers (01, 02) in Cyber Cyan. JetBrains Mono for the manifesto text.",
+    "experience": "Retro-Futurism timeline. Technical look. Scanlines or terminal-inspired UI for roles (Data Analyst Intern, AI Researcher, SE Intern). Vertical line glowing cyan to connect roles.",
+    "projects": "The Tracing Beam (Aceternity Look) on project cards. Emphasize impact metrics ($90K retained revenue, $300K margin leakage, $94K recovery) with massive typography (text-5xl) in Cyan.",
+    "skills": "Bento Grid. High-density, techy borders. Separate clusters: Python, SQL, ML/AI, Data Engineering, BI tools. Icons from Phosphor Icons.",
+    "marquee": "One slow editorial marquee moving across the screen: 'DATA DRIVEN // AI FOCUSED // PROBLEM SOLVER'. Font: Unbounded Outline.",
+    "contact": "Minimalist grid displaying Email, Phone, LinkedIn, GitHub. Solid Background with a hard top border. Huge 'LET'S BUILD' or 'CONTACT' text. No photo."
+  },
+  "motion_and_3d": {
+    "libraries": [
+      "framer-motion (for line-by-line reveals and interactions)",
+      "lenis (MANDATORY for premium smooth momentum scrolling)",
+      "react-tsparticles (for subtle glowing dots/grid lines in the background)",
+      "react-fast-marquee (for editorial moving text)"
+    ],
+    "interactions": [
+      "Hover states must trigger micro-animations (scale, border-glow).",
+      "Staggered entrance animations for timeline and bento grids.",
+      "Parallax/3D hero moment: Elements move slightly based on scroll depth."
+    ],
+    "rules": [
+      "Motion should feel deliberate, premium, and mechanical, not bouncy or chaotic."
+    ]
+  },
+  "image_urls": [
+    {
+      "url": "https://images.unsplash.com/photo-1673813497649-9b1ff22e6185?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRhdGElMjB2aXN1YWxpemF0aW9uJTIwbmVvbiUyMGJsdWV8ZW58MHx8fHwxNzg2MTYwNTMyfDA&ixlib=rb-4.1.0&q=85",
+      "category": "Hero Background / Parallax Element",
+      "description": "Flowing blue abstract lines representing data streams. Use with low opacity (10-20%) and blend-mode: screen."
+    },
+    {
+      "url": "https://images.pexels.com/photos/33158875/pexels-photo-33158875.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "category": "Projects / Tech Visualization",
+      "description": "High-tech matrix display with glowing digital symbols. Good for AI/ML project card backgrounds or hover states."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1763926444244-a0becec704a2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwyfHxmdXR1cmlzdGljJTIwc2VydmVyJTIwbmVvbiUyMGN5YW58ZW58MHx8fHwxNzg2MTYwNTMyfDA&ixlib=rb-4.1.0&q=85",
+      "category": "Experience / Section Divider",
+      "description": "Abstract glowing cyan rectangles. Use as an overlay or subtle background texture behind the experience timeline."
+    }
+  ],
+  "accessibility": [
+    "Check contrast for Cyan text on dark backgrounds. Minimum 4.5:1.",
+    "Add aria-hidden='true' to purely decorative animations.",
+    "Respect prefers-reduced-motion media query for heavy particle animations."
+  ],
+  "universal_guidelines_for_main_agent": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition (e.g., transition: all).",
+    "You MUST NOT center align the app container (.App { text-align: center; }).",
+    "NEVER: use AI assistant Emoji characters like \ud83e\udd16\ud83e\udde0\ud83d\udcad\ud83d\udca1\ud83d\udd2e\ud83c\udfaf etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "All interactive and key informational elements MUST include a 'data-testid' attribute to facilitate robust automated testing."
+  ]
+}
